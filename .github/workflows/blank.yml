@@ -1,6 +1,6 @@
-name: Build PR
+name: Build main
 
-on: [pull_request]
+on: [push]
 
 jobs:
   build:
@@ -13,9 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2.1.0
-
-    - name: Get PR info
-      run: echo ::set-env name=PR::$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
     - name: Set up JDK ${{ matrix.java }}
       uses: actions/setup-java@v1.3.0
@@ -30,12 +27,12 @@ jobs:
 
     - name: Patch Tuinity
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "projektycraftek@gmail.com"
+        git config --global user.name "tofipix"
         git submodule update --init --recursive
         ./tuinity jar
         
     - uses: actions/upload-artifact@v2
       with:
-        name: Tuinity-PR${{ env.PR }}-JDK${{ matrix.java }}
+        name: Tuinity-JDK${{ matrix.java }}
         path: tuinity-paperclip.jar
