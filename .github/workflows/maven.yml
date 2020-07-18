@@ -27,8 +27,8 @@ jobs:
 
     - name: Patch Tuinity
       run: |
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "projektycraftek@gmail.com"
+        git config --global user.name "tofipix"
         git submodule update --init --recursive
         ./tuinity jar
         
